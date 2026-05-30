@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Knot — Trade what you have, keep what you love</title>
+<meta name="description" content="A community barter app. Swap things and skills with people nearby. No money, no ads, no middlemen.">
+
+<!-- Open Graph (for link previews) -->
+<meta property="og:title" content="Knot — Community Barter Network">
+<meta property="og:description" content="Trade things and skills with people nearby. No money. No ads. No middlemen.">
+<meta property="og:image" content="https://www.knotswap.app/og.png">
+<meta property="og:url" content="https://www.knotswap.app">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/png" href="/favicon.png">
+
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #F4EEDE;
+    font-family: Georgia, 'Times New Roman', serif;
+    color: #2C2C2C;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Top nav */
+  nav {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 28px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .wordmark {
+    font-weight: 700;
+    font-size: 20px;
+    color: #1D9E75;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+  }
+  nav a.link {
+    color: #4A4A4A;
+    text-decoration: none;
+    margin-left: 24px;
+    font-size: 14px;
+  }
+  nav a.link:hover { color: #1D9E75; }
+
+  /* Hero */
+  .hero {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 64px 28px 80px;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 0 0 20px 0;
+    color: #1F1F1F;
+    letter-spacing: -0.5px;
+  }
+  .hero .lede {
+    font-size: 20px;
+    color: #4A4A4A;
+    max-width: 580px;
+    margin: 0 auto 36px;
+    font-style: italic;
+  }
+  .cta-row {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .app-store-badge {
+    display: inline-block;
+    background: #1F3D2B;
+    color: #F4EEDE;
+    padding: 14px 28px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.3px;
+    box-shadow: 0 4px 14px rgba(31, 61, 43, 0.18);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .app-store-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(31, 61, 43, 0.24);
+  }
+  .app-store-badge small {
+    display: block;
+    font-size: 10px;
+    font-weight: 400;
+    opacity: 0.7;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+  }
+
+  /* Waitlist form */
+  .waitlist {
+    margin: 36px auto 0;
+    max-width: 460px;
+  }
+  .waitlist p {
+    font-size: 13px;
+    color: #8A8074;
+    margin: 0 0 10px 0;
+    font-style: italic;
+  }
+  .waitlist form {
+    display: flex;
+    gap: 8px;
+  }
+  .waitlist input {
+    flex: 1;
+    padding: 12px 16px;
+    font-family: Georgia, serif;
+    font-size: 15px;
+    color: #2C2C2C;
+    background: #FAF4E6;
+    border: 1px solid rgba(107, 83, 64, 0.25);
+    border-radius: 10px;
+    outline: none;
+  }
+  .waitlist input:focus {
+    border-color: #1D9E75;
+  }
+  .waitlist button {
+    padding: 12px 22px;
+    font-family: Georgia, serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #FFF;
+    background: #1D9E75;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  .waitlist button:hover { background: #178363; }
+
+  /* Section ornament divider */
+  .divider {
+    width: 60px;
+    height: 1px;
+    background: rgba(107, 83, 64, 0.35);
+    margin: 24px auto;
+  }
+
+  /* How it works */
+  .how {
+    background: #FAF4E6;
+    padding: 80px 28px;
+    border-top: 1px solid rgba(107, 83, 64, 0.18);
+    border-bottom: 1px solid rgba(107, 83, 64, 0.18);
+  }
+  .how-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .how h2 {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 800;
+    margin: 0 0 48px 0;
+    color: #1F1F1F;
+  }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .step {
+    text-align: center;
+  }
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #E9F5EE;
+    color: #1D9E75;
+    font-weight: 800;
+    font-size: 18px;
+    margin-bottom: 14px;
+    border: 1px solid rgba(29, 158, 117, 0.3);
+  }
+  .step h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    color: #1F1F1F;
+  }
+  .step p {
+    font-size: 14px;
+    color: #4A4A4A;
+    margin: 0;
+  }
+
+  /* Values */
+  .values {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 80px 28px;
+    text-align: center;
+  }
+  .values h2 {
+    font-size: 32px;
+    font-weight: 800;
+    margin: 0 0 16px 0;
+    color: #1F1F1F;
+  }
+  .values .lede {
+    font-size: 16px;
+    color: #4A4A4A;
+    max-width: 580px;
+    margin: 0 auto 48px;
+    font-style: italic;
+  }
+  .value-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    text-align: left;
+  }
+  .value-card {
+    background: #FAF4E6;
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid rgba(107, 83, 64, 0.18);
+  }
+  .value-card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    color: #1D9E75;
+  }
+  .value-card p {
+    font-size: 14px;
+    color: #4A4A4A;
+    margin: 0;
+  }
+
+  /* Closing CTA */
+  .closing {
+    background: #1F3D2B;
+    color: #F4EEDE;
+    padding: 80px 28px;
+    text-align: center;
+  }
+  .closing h2 {
+    font-size: 36px;
+    font-weight: 800;
+    margin: 0 0 16px 0;
+    color: #F4EEDE;
+  }
+  .closing p {
+    font-size: 16px;
+    opacity: 0.85;
+    margin: 0 0 32px 0;
+    font-style: italic;
+  }
+  .closing .app-store-badge {
+    background: #F4EEDE;
+    color: #1F3D2B;
+  }
+
+  /* Footer */
+  footer {
+    padding: 32px 28px;
+    text-align: center;
+    font-size: 12px;
+    color: #8A8074;
+  }
+  footer a {
+    color: #1D9E75;
+    text-decoration: none;
+    margin: 0 8px;
+  }
+  footer a:hover { text-decoration: underline; }
+
+  /* Mobile */
+  @media (max-width: 700px) {
+    .hero h1 { font-size: 40px; }
+    .hero .lede { font-size: 17px; }
+    .steps { grid-template-columns: 1fr; gap: 28px; }
+    .value-grid { grid-template-columns: 1fr; }
+    .closing h2 { font-size: 28px; }
+    .waitlist form { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="wordmark">knot</a>
+    <div>
+      <a href="#how" class="link">How it works</a>
+      <a href="#values" class="link">Why Knot</a>
+      <a href="mailto:hi@knotswap.app" class="link">Contact</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>Trade what you have.<br>Keep what you love.</h1>
+    <p class="lede">
+      Knot is a community barter app. Swap things and skills with people nearby — no money, no ads, no middlemen.
+    </p>
+    <div class="cta-row">
+      <a href="#" class="app-store-badge">
+        <small>DOWNLOAD ON THE</small>
+        App Store
+      </a>
+    </div>
+    <div class="waitlist">
+      <p>Not on iOS yet? Leave your email and we'll let you know when more platforms land.</p>
+      <form action="https://formspree.io/f/your-form-id" method="POST">
+        <input type="email" name="email" placeholder="you@example.com" required>
+        <button type="submit">Notify me</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="how" id="how">
+    <div class="how-inner">
+      <h2>How it works</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Post what you have</h3>
+          <p>A book, a bike, a few hours of guitar lessons. Snap a photo, write what you're hoping to trade it for.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Browse what's nearby</h3>
+          <p>Swipe through listings in your area. Like the ones that catch your eye, pass on the rest.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Match and meet</h3>
+          <p>When you both like each other's stuff, that's a match. Chat in the app, meet up, make the trade.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="values" id="values">
+    <h2>What makes Knot different</h2>
+    <p class="lede">
+      Most apps want your attention so they can sell it. Knot just wants to help you trade.
+    </p>
+    <div class="value-grid">
+      <div class="value-card">
+        <h3>No money changes hands</h3>
+        <p>Knot is for barter, period. No payments, no markup, no shipping fees. Just people trading directly.</p>
+      </div>
+      <div class="value-card">
+        <h3>No ads, no tracking</h3>
+        <p>We don't sell your data. We don't run ads. The recommendation feed only uses what you like and pass on inside the app.</p>
+      </div>
+      <div class="value-card">
+        <h3>Community-funded</h3>
+        <p>Knot is a non-profit project funded by annual donations from the people who use it. If we don't hit our fund goal, the app goes dark until we do.</p>
+      </div>
+      <div class="value-card">
+        <h3>Built for staying nearby</h3>
+        <p>Everything you see is within walking or biking distance. Trades happen in person, between actual neighbors.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing">
+    <h2>Ready to trade?</h2>
+    <p>Free. iPhone only for now.</p>
+    <a href="#" class="app-store-badge">
+      <small>DOWNLOAD ON THE</small>
+      App Store
+    </a>
+  </section>
+
+  <footer>
+    <a href="/privacy">Privacy Policy</a>
+    ·
+    <a href="/TOS">Terms of Service</a>
+    ·
+    <a href="mailto:hi@knotswap.app">Contact</a>
+    <br><br>
+    © 2026 KnotSwap. A community-owned non-profit product.
+  </footer>
+
+</body>
+</html>
